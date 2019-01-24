@@ -245,15 +245,15 @@ const warrior = new Hero({
 });
 
 //Background story
-function backStory(character) {
+const backStory = (character) => {
   return `${character.name}, a ${character.affliation} and member of the \"${character.team}\"`
 }
 console.log(`We begin our journey with ${backStory(sorcerer)}; and with ${backStory(warrior)}.`)
 
 //Battle Sequence
-function combat(character, opponent) {
+const combat = (character, opponent) => {
   // Choose character attack
-  function attack() {
+  const attack = () => {
     if (character.affliation === 'Villain') {
       character.fireballThrow(opponent)
     } else {
