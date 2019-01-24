@@ -140,7 +140,7 @@ class ProjectManager extends Instructor {
   }
 
   standUp(channel) {
-    console.log(`${channel}, @${channel} stand up times`)
+    console.log(`${this.name} announces to ${channel} channel, @${channel} stand up times!`)
   }
 
   debugsCode(student, subject) {
@@ -210,7 +210,7 @@ const projectManagerInfo = (array) => array.map(classObj => {
   console.log(classObj)
   console.log(classObj.speak())
   console.log(classObj.demo('Python'))
-  console.log(classObj.grade(cindy))
+  console.log(classObj.grade(cindy, 'Python'))
   console.log(classObj.standUp(`ds30_${classObj.name}`))
   console.log(classObj.debugsCode(cindy, 'Python'))
 })
