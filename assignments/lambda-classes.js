@@ -40,7 +40,7 @@ class Instructor extends Person {
     console.log(`Today we are learning about ${subject}.`)
   }
 
-  grade(student) {
+  grade(student, subject) {
     console.log(`${student.name} receives a perfect score on ${subject}.`)
   }
 }
@@ -77,7 +77,7 @@ class Student extends Person {
 
   listSubjects() {
     let subjects = this.favSubjects
-    console.log(subjects.map(subject => `${subject} \n`))
+    console.log(subjects.map(subject => `${subject}`))
   }
 
   prAssignment(subject) {
@@ -173,3 +173,50 @@ const marcia = new ProjectManager({
   gradClassName: 'ds5',
   favInstructor: 'Alice'
 })
+
+// Verify personnel information
+const persons = [mike, carol]
+const instructors = [alice, sam]
+const students = [peter, jan, bobby, cindy]
+const projectManagers = [greg, marcia]
+
+const personInfo = (array) => array.map(classObj => {
+  console.log(classObj)
+  console.log(classObj.speak())
+})
+
+personInfo(persons)
+
+const instructorInfo = (array) => array.map(classObj => {
+  console.log(classObj)
+  console.log(classObj.speak())
+  console.log(classObj.demo('HTML'))
+  console.log(classObj.grade(peter, 'HTML'))
+})
+
+instructorInfo(instructors)
+
+const studentInfo = (array) => array.map(classObj => {
+  console.log(classObj)
+  console.log(classObj.speak())
+  console.log(classObj.listSubjects())
+  console.log(classObj.prAssignment('C++'))
+  console.log(classObj.sprintChallenge('Python'))
+})
+
+studentInfo(students)
+
+const projectManagerInfo = (array) => array.map(classObj => {
+  console.log(classObj)
+  console.log(classObj.speak())
+  console.log(classObj.demo('Python'))
+  console.log(classObj.grade(cindy))
+  console.log(classObj.standUp(`ds30_${classObj.name}`))
+  console.log(classObj.debugsCode(cindy, 'Python'))
+})
+
+projectManagerInfo(projectManagers)
+
+
+
+
