@@ -80,8 +80,17 @@ class Student extends Person {
 
   listSubjects() {
     let subjects = this.favSubjects
-    //console.log(subjects.forEach(subject => {console.log(subject, '\n')}))
-    return subjects.forEach(subject => {subject})
+    //Version 1 - Enumerate an array using a For Loop 
+    //NOTE: Can directly invoke method to display subject list
+    // for (let i = 0; i < subjects.length; i++) {
+    //   console.log(subjects[i])
+    //   //return subjects[i]
+    // }
+    
+    //Version 2 - Enumerate an array using the .map() method
+    //NOTE: Need to console log method to display subject list
+    return `${this.name}\'s favorite subjects are${subjects.map((item, index) => index !== subjects.length - 1 ? ' ' + item : ' and ' + item)}`
+
   }
 
   prAssignment(subject) {
@@ -208,6 +217,8 @@ instructorInfo(instructors)
 const studentInfo = (array) => array.map(classObj => {
   console.log(classObj)
   console.log(classObj.speak())
+  ///Directly invoke the function to enumerate the array of subjects - if using Version 1 of the .listSubjects() method
+  //classObj.listSubjects()
   console.log(classObj.listSubjects())
   console.log(classObj.prAssignment('C++'))
   console.log(classObj.sprintChallenge('Python'))
