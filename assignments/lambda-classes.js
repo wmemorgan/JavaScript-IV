@@ -9,6 +9,7 @@ class Person {
   }
   speak() {
     console.log(`Hello my name is ${this.name}, I am from ${this.location}.`)
+    return `Hello my name is ${this.name}, I am from ${this.location}.`
   }
 }
 
@@ -38,10 +39,12 @@ class Instructor extends Person {
 
   demo(subject) {
     console.log(`Today we are learning about ${subject}.`)
+    return `Today we are learning about ${ subject }.`
   }
 
   grade(student, subject) {
     console.log(`${student.name} receives a perfect score on ${subject}.`)
+    return `${student.name} receives a perfect score on ${subject}.`
   }
 }
 
@@ -77,15 +80,18 @@ class Student extends Person {
 
   listSubjects() {
     let subjects = this.favSubjects
-    console.log(subjects.map(subject => `${subject}`))
+    console.log(subjects.forEach(subject => {console.log(subject, '\n')}))
+    return subjects.forEach(subject => {subject})
   }
 
   prAssignment(subject) {
     console.log(`${this.name} has submitted a PR for ${subject}`)
+    return `${this.name} has submitted a PR for ${subject}`
   }
 
   sprintChallenge(subject) {
     console.log(`${this.name} has begun sprint challenge on ${subject}`)
+    return `${this.name} has begun sprint challenge on ${subject}`
   }
 
 }
@@ -131,6 +137,7 @@ const cindy = new Student({
   favSubjects: ['Python', 'SQL']
 })
 
+
 //==== Project Manager
 class ProjectManager extends Instructor {
   constructor(attributes) {
@@ -141,10 +148,12 @@ class ProjectManager extends Instructor {
 
   standUp(channel) {
     console.log(`${this.name} announces to ${channel} channel, @${channel} stand up times!`)
+    return `${this.name} announces to ${channel} channel, @${channel} stand up times!`
   }
 
   debugsCode(student, subject) {
     console.log(`${this.name} debugs ${student.name}\'s code on ${subject}.`)
+    return `${this.name} debugs ${student.name}\'s code on ${subject}.`
   }
 
 }
