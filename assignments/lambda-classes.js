@@ -42,6 +42,24 @@ class Instructor extends Person {
     return `Today we are learning about ${ subject }.`
   }
 
+  assignGrade(student) {
+    if (student.isAGraduate()) {
+      return `${student.name} has graduated.`
+    } else {
+      let add = Math.floor(Math.random() * (1 - 0 + 1))
+      if (add) {
+        let points = Math.floor(Math.random() * (5 - 1 + 1))
+        student.grade = student.grade + points
+        return `${this.name} has awarded ${points} point(s) to ${student.name}\'s grade.`
+      } else {
+        let points = Math.floor(Math.random() * (5 - 1 + 1))
+        student.grade = student.grade - points
+        return `${this.name} has deducted ${points} point(s) from ${student.name}\'s grade.`
+      }  
+    }
+
+  }
+
   grade(student, subject) {
     //console.log(`${student.name} receives a perfect score on ${subject}.`)
     return `${student.name} receives a perfect score on ${subject}.`
@@ -76,6 +94,7 @@ class Student extends Person {
     this.previousBackground = attributes.previousBackground
     this.className = attributes.className
     this.favSubjects = attributes.favSubjects
+    this.grade = attributes.grade
   }
 
   listSubjects() {
@@ -103,6 +122,10 @@ class Student extends Person {
     return `${this.name} has begun sprint challenge on ${subject}`
   }
 
+  isAGraduate() {
+    return this.grade >= 70 ? true : false
+  }
+
 }
 
 // EXAMPLES
@@ -113,7 +136,8 @@ const peter = new Student({
   gender: 'male',
   previousBackground: 'Stand-up Comic',
   className: 'webpt4',
-  favSubjects: ['HTML', 'CSS', 'JavaScript']
+  favSubjects: ['HTML', 'CSS', 'JavaScript'],
+  grade: 12
 })
 
 const jan = new Student({
@@ -123,7 +147,8 @@ const jan = new Student({
   gender: 'female',
   previousBackground: 'Librarian',
   className: 'cs132',
-  favSubjects: ['Python', 'C++', 'Java'] 
+  favSubjects: ['Python', 'C++', 'Java'],
+  grade: 54 
 })
 
 const bobby = new Student({
@@ -133,7 +158,8 @@ const bobby = new Student({
   gender: 'male',
   previousBackground: 'Hotel Concierge',
   className: 'ux10',
-  favSubjects: ['Ideation', 'Sketch']
+  favSubjects: ['Ideation', 'Sketch'],
+  grade: 23
 })
 
 const cindy = new Student({
@@ -143,9 +169,12 @@ const cindy = new Student({
   gender: 'female',
   previousBackground: 'Pharmaceutical Sales Rep',
   className: 'ds30',
-  favSubjects: ['Python', 'SQL']
+  favSubjects: ['Python', 'SQL'],
+  grade: 82
 })
 
+console.log(alice.assignGrade(bobby))
+//console.log(bobby.grade)
 
 //==== Project Manager
 class ProjectManager extends Instructor {
@@ -192,6 +221,8 @@ const marcia = new ProjectManager({
   favInstructor: 'Alice'
 })
 
+console.log(marcia.assignGrade(cindy))
+
 // Verify personnel information
 const persons = [mike, carol]
 const instructors = [alice, sam]
@@ -221,6 +252,7 @@ const studentInfo = (array) => array.map(classObj => {
   //classObj.listSubjects()
   console.log(classObj.listSubjects())
   console.log(classObj.prAssignment('C++'))
+  console.log(`${classObj.name}\'s current grade is ${classObj.grade}`)
   console.log(classObj.sprintChallenge('Python'))
 })
 
@@ -236,6 +268,23 @@ const projectManagerInfo = (array) => array.map(classObj => {
 })
 
 projectManagerInfo(projectManagers)
+
+//Stretch Goal Testing
+const evaluators = [...instructors, ...projectManagers]
+const studentGrading = (evaluators, students) => {
+  for (let i = 0; i < evaluators.length; i++) {
+    for (let j = 0; j < students.length; j++) {
+      console.log(evaluators[i].assignGrade(students[j]))
+    }
+  }
+
+}
+
+studentGrading(evaluators,students)
+
+
+
+
 
 
 
