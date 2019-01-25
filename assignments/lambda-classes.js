@@ -48,11 +48,12 @@ class Instructor extends Person {
     } else {
       let add = Math.floor(Math.random() * (1 - 0 + 1))
       if (add) {
-        let points = Math.floor(Math.random() * (5 - 1 + 1))
+        //Grading is based on a "special" formula that increases the range for awarding points
+        let points = Math.floor(Math.random() * (10 - 1 + 1))
         student.grade = student.grade + points
         return `${this.name} has awarded ${points} point(s) to ${student.name}\'s grade.`
       } else {
-        let points = Math.floor(Math.random() * (5 - 1 + 1))
+        let points = Math.floor(Math.random() * (4 - 1 + 1))
         student.grade = student.grade - points
         return `${this.name} has deducted ${points} point(s) from ${student.name}\'s grade.`
       }  
@@ -159,7 +160,7 @@ const bobby = new Student({
   previousBackground: 'Hotel Concierge',
   className: 'ux10',
   favSubjects: ['Ideation', 'Sketch'],
-  grade: 23
+  grade: 33
 })
 
 const cindy = new Student({
@@ -277,10 +278,21 @@ const studentGrading = (evaluators, students) => {
       console.log(evaluators[i].assignGrade(students[j]))
     }
   }
-
 }
 
-studentGrading(evaluators,students)
+//studentGrading(evaluators,students)
+
+//The Lambda School Way: No Student Left Behind
+let graduatingStudents = students.filter(student => student.grade >= 70)
+console.log(graduatingStudents.length)
+
+while (graduatingStudents.length < students.length) {
+  studentGrading(evaluators, students)
+  graduatingStudents = students.filter(student => student.grade >= 70)
+  console.log(`${graduatingStudents.length} students have graduated. There are ${students.length - graduatingStudents.length} remaining`)
+}
+
+
 
 
 
